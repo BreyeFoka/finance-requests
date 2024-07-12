@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors')
+const bodyparser = require('body-parser')
 const dotenv = require('dotenv');
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
@@ -10,9 +12,9 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.json());
-
-
+// app.use(express.json());
+app.use(bodyparser.json())
+app.use(cors())
 app.use('/api/export', exportRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api', authMiddleware, manRoutes);
