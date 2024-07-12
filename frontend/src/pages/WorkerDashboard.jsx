@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { createRequest } from '../services/api';
 
 const WorkerDashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -15,7 +15,7 @@ const WorkerDashboard = () => {
     // Fetch previous requests
     const fetchRequests = async () => {
       try {
-        const response = await axios.get('/api/worker/requests');
+        const response = await fetchRequests();
         setRequests(response.data);
       } catch (error) {
         console.error('Error fetching requests:', error);
@@ -33,7 +33,7 @@ const WorkerDashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/requests', newRequest);
+      const response = await createRequest(newRequest);
       if (response.data.success) {
         setRequests((prevRequests) => [...prevRequests, newRequest]);
         setNewRequest({ name: '', amount: '', reason: '', date: '' });

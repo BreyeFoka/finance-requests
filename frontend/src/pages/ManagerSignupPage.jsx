@@ -1,18 +1,21 @@
 // src/pages/ManagerSignupPage.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
+import { RegisterUser } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
 const ManagerSignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [role, setRole] = useState('');
+
+  setRole('manager');
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/manager/signup', { name, email, password });
+      const response = await RegisterUser(name, email, password, role);
       if (response.data.success) {
         navigate('/manager-login');
       } else {

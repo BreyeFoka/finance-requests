@@ -1,6 +1,6 @@
 // src/pages/ManagerLoginPage.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
+import {LoginUser} from '../services/api';
 import { Link, useNavigate } from 'react-router-dom';
 
 const ManagerLoginPage = () => {
@@ -11,7 +11,7 @@ const ManagerLoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/manager/login', { email, password });
+      const response = await LoginUser(email, password);
       if (response.data.success) {
         navigate('/manager-dashboard');
       } else {

@@ -1,6 +1,6 @@
 // src/components/LoginForm.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
+import { LoginUser } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({ role }) => {
@@ -10,7 +10,7 @@ const LoginForm = ({ role }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(`/api/${role}/login`, { email, password });
+      const response = await LoginUser(email, password);
       if (response.data.success) {
         navigate(`/${role}-dashboard`);
       } else {
