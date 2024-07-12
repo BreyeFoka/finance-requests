@@ -17,8 +17,9 @@ app.use(bodyparser.json())
 app.use(cors())
 app.use('/api/export', exportRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api', authMiddleware, manRoutes);
+app.use('/api',authMiddleware, manRoutes);
 app.use('/api/requests', authMiddleware, requestRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 

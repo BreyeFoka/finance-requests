@@ -33,6 +33,26 @@ exports.getAllRequests = async (req, res) => {
   }
 };
 
+// Get all requests by worker_id (for accountants)
+exports.getRequestsByWorkerId = async (req, res) => {
+  const { id } = req.user;
+
+  try {
+    const requests = await Request.findAll({
+      where: { worker_id: id },
+      include: [{ model: User, attributes: ['name', 'email'] }]
+    });
+
+    if (requests.length === 0) {
+      return res.status(404).send({ error: 'No requests found for this worker.' });
+    }
+
+    res.status(200).send(requests);
+  } catch (error) {
+    res.status(500).send({ error: 'Server error.' });
+  }
+};
+
 // Approve or deny request (for accountants)
 exports.approveRequest = async (req, res) => {
   const { id } = req.params;
