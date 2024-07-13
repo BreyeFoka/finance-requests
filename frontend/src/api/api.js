@@ -13,7 +13,7 @@ export const api = axios.create({
 
 // Add a request interceptor to include the token
 api.interceptors.request.use(config => {
-  const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3MjA4MDkxODJ9.WexydO42ggopHAGqUYcDxhF-1EBRph6tYFq83DzyrfY";
+  const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IndvcmtlciIsImlhdCI6MTcyMDg2MzQwOX0.53EYWamQ6NsnE-DKJV-WCWbgLMQUSFa9PyRf6l0qpNM";
   if (token) {
       config.headers['Authorization'] = token;
   }

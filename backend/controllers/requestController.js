@@ -1,9 +1,11 @@
 const Request = require('../models/Request');
 const User = require('../models/User');
 
+
 // Submit new request
 exports.submitRequest = async (req, res) => {
-  const { amount, reason, date, comments, filepath, names} = req.body;
+  const { amount, reason, date, comments, names} = req.body;
+  const file = req.file ? req.file.path : null;
   const { id } = req.user;
 
   try {
@@ -13,11 +15,11 @@ exports.submitRequest = async (req, res) => {
       reason,
       date,
       comments,
-      filepath,
+      filepath: file,
       names
     });
-
     res.status(201).send({ message: 'Request submitted successfully.' });
+    alert('Request submitted successfully');
   } catch (error) {
     res.status(500).send({ error: 'Server error.' });
   }
