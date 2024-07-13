@@ -15,6 +15,10 @@ const Request = sequelize.define('Request', {
       key: 'id'
     }
   },
+  names: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   amount: {
     type: DataTypes.FLOAT,
     allowNull: false
@@ -23,6 +27,10 @@ const Request = sequelize.define('Request', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  filepath:{
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   date: {
     type: DataTypes.DATE,
     allowNull: false
@@ -30,6 +38,10 @@ const Request = sequelize.define('Request', {
   status: {
     type: DataTypes.ENUM('pending', 'approved', 'denied'),
     defaultValue: 'pending'
+  },
+  comments: {
+    type: DataTypes.STRING,
+    allowNull: true
   }
 });
 

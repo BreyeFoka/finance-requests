@@ -56,14 +56,14 @@ useEffect(() => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
-    // TODO: uncomment line 60 if the name field is needed
-    // data.append('name', formData.name);
+    data.append('names', formData.name);
     data.append('amount', formData.amount);
     data.append('date', formData.date);
     data.append('reason', formData.reason);
-    // TODO: uncomment line till 68 if the file fields are needed
-    // data.append('file', formData.file);
-    // data.append('comment', formData.comment);
+    if(formData.file) {
+        data.append('filepath', formData.file);
+    }
+    data.append('comments', formData.comment);
     // data.append('approval', formData.approval);
     try {
       const response = await api.post('/api/requests', formData);
@@ -78,6 +78,7 @@ useEffect(() => {
   <h2 className="text-3xl font-bold mb-4 mt-10">Worker Page</h2>
   <form onSubmit={handleSubmit} className="p-4 my-6 mx-10 bg-white w-auto flex flex-col lg:flex-row">
     <div className="flex flex-col space-y-5 w-full">
+            <h2 className='text-2xl font-bold mb-4 mt-3'>Please Fill In this form To Request Money</h2>  
       <div className="flex flex-col lg:flex-row space-y-2 lg:space-y-0 lg:space-x-7">
         <label htmlFor="name" className="block text-lg font-medium text-gray-700">Name</label>
         <input

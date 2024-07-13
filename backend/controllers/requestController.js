@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 // Submit new request
 exports.submitRequest = async (req, res) => {
-  const { amount, reason, date } = req.body;
+  const { amount, reason, date, comments, filepath, names} = req.body;
   const { id } = req.user;
 
   try {
@@ -11,7 +11,10 @@ exports.submitRequest = async (req, res) => {
       worker_id: id,
       amount,
       reason,
-      date
+      date,
+      comments,
+      filepath,
+      names
     });
 
     res.status(201).send({ message: 'Request submitted successfully.' });
