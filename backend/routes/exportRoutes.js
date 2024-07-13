@@ -28,7 +28,7 @@ router.get('/export-requests', async (req, res) => {
 
     worksheet.columns = [
       { header: 'ID', key: 'id', width: 10 },
-      { header: 'Name', key: 'name', width: 30 },
+      { header: 'Names', key: 'names', width: 30 },
       { header: 'Amount', key: 'amount', width: 15 },
       { header: 'Reason', key: 'reason', width: 30 },
       { header: 'Date', key: 'date', width: 15 },
@@ -61,7 +61,7 @@ router.get('/export-approved-requests', async (req, res) => {
 
     worksheet.columns = [
       { header: 'ID', key: 'id', width: 10 },
-      { header: 'Name', key: 'name', width: 30 },
+      { header: 'Name', key: 'names', width: 30 },
       { header: 'Amount', key: 'amount', width: 15 },
       { header: 'Reason', key: 'reason', width: 30 },
       { header: 'Date', key: 'date', width: 15 },
