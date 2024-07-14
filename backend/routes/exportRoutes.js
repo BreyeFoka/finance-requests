@@ -25,10 +25,9 @@ router.get('/export-requests', async (req, res) => {
 
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Requests');
-
     worksheet.columns = [
       { header: 'ID', key: 'id', width: 10 },
-      { header: 'Names', key: 'names', width: 30 },
+      { header: 'Names', key: 'names', width: 50},
       { header: 'Amount', key: 'amount', width: 15 },
       { header: 'Reason', key: 'reason', width: 30 },
       { header: 'Date', key: 'date', width: 15 },
