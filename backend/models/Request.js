@@ -42,6 +42,14 @@ const Request = sequelize.define('Request', {
   comments: {
     type: DataTypes.STRING,
     allowNull: true
+  },
+  approval:{
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  approvalcomment:{
+    type: DataTypes.STRING,
+    allowNull: true
   }
 });
 

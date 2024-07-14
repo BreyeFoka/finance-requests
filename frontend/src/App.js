@@ -1,5 +1,5 @@
 import React from 'react';
-// import WorkerPage from './components/workerPage';
+import WorkerPage from './components/workerPage';
 import AccountantDashboard from './components/AccountantDashboard';
 import './App.css';
 

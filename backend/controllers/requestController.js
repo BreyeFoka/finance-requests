@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 // Submit new request
 exports.submitRequest = async (req, res) => {
-  const { amount, reason, date, comments, names} = req.body;
+  const { amount, reason, date, comments, names, approval} = req.body;
   const file = req.file ? req.file.path : null;
   const { id } = req.user;
 
@@ -16,10 +16,10 @@ exports.submitRequest = async (req, res) => {
       date,
       comments,
       filepath: file,
-      names
+      names,
+      approval
     });
     res.status(201).send({ message: 'Request submitted successfully.' });
-    alert('Request submitted successfully');
   } catch (error) {
     res.status(500).send({ error: 'Server error.' });
   }
@@ -38,7 +38,7 @@ exports.getAllRequests = async (req, res) => {
   }
 };
 
-// Get all requests by worker_id (for accountants)
+// Get all requests by worker_id (For each worker)
 exports.getRequestsByWorkerId = async (req, res) => {
   const { id } = req.user;
 
@@ -61,8 +61,7 @@ exports.getRequestsByWorkerId = async (req, res) => {
 // Approve or deny request (for accountants)
 exports.approveRequest = async (req, res) => {
   const { id } = req.params;
-  const { status } = req.body;
-
+  const { status, approvalcomment} = req.body;
   try {
     const request = await Request.findByPk(id);
 
@@ -71,6 +70,7 @@ exports.approveRequest = async (req, res) => {
     }
 
     request.status = status;
+    request.approvalcomment = approvalcomment;
     await request.save();
 
     res.status(200).send({ message: 'Request status updated successfully.' });

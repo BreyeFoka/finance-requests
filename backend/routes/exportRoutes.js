@@ -27,15 +27,21 @@ router.get('/export-requests', async (req, res) => {
     const worksheet = workbook.addWorksheet('Requests');
     worksheet.columns = [
       { header: 'ID', key: 'id', width: 10 },
+      { header: 'Worker ID', key: 'worker_id', width: 10 },
+      { header: 'Comments', key: 'comments', width: 50 },
       { header: 'Names', key: 'names', width: 50},
       { header: 'Amount', key: 'amount', width: 15 },
       { header: 'Reason', key: 'reason', width: 30 },
       { header: 'Date', key: 'date', width: 15 },
-      { header: 'Status', key: 'status', width: 15 }
+      { header: 'Status', key: 'status', width: 15 },
+      { header: 'Attached File', key: 'filepath', width: 15 }
     ];
 
     results.forEach((request) => {
-      worksheet.addRow(request);
+      worksheet.addRow({
+        ...request,
+        filepath: request.filepath ? 'Yes' : 'No'
+      });
     });
 
     res.setHeader(
@@ -51,7 +57,7 @@ router.get('/export-requests', async (req, res) => {
 
 // Route to export approved requests
 router.get('/export-approved-requests', async (req, res) => {
-  const query = "SELECT * FROM requests WHERE status='Approved'";
+  const query = "SELECT * FROM requests WHERE status='approved'";
   db.query(query, async (err, results) => {
     if (err) throw err;
 
@@ -64,11 +70,14 @@ router.get('/export-approved-requests', async (req, res) => {
       { header: 'Amount', key: 'amount', width: 15 },
       { header: 'Reason', key: 'reason', width: 30 },
       { header: 'Date', key: 'date', width: 15 },
-      { header: 'Status', key: 'status', width: 15 }
+      { header: 'Attached File', key: 'filepath', width: 15 }
     ];
 
     results.forEach((request) => {
-      worksheet.addRow(request);
+      worksheet.addRow({
+        ...request,
+        filepath: request.filepath ? 'Yes' : 'No'
+      });
     });
 
     res.setHeader(

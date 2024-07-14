@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors')
 const bodyparser = require('body-parser')
 const dotenv = require('dotenv');
@@ -19,7 +20,7 @@ app.use('/api/export', exportRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api',authMiddleware, manRoutes);
 app.use('/api/requests', authMiddleware, requestRoutes);
-
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const PORT = process.env.PORT || 5000;
 

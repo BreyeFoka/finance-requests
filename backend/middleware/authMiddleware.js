@@ -15,10 +15,11 @@ const authMiddleware = async (req, res, next) => {
     req.user = decoded;
 
     // Check role and limit for managers
-    if (req.user.role === 'manager') {
+    if (req.user.role === 'manager' | req.user.role === 'accountant') {
       const managerCount = await User.count({ where: { role: 'manager' } });
-      if (managerCount >= 2) {
-        return res.status(403).send({ error: 'Manager limit reached.' });
+      const accountantCount = await User.count({ where: { role: 'accountant' } });
+      if (managerCount >= 2 | accountantCount >= 2) {
+        return res.status(403).send({ error: 'Sorry the limit for that position has been reached.' });
       }
     }
 
