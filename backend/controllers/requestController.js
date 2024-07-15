@@ -61,7 +61,7 @@ exports.getRequestsByWorkerId = async (req, res) => {
 // Approve or deny request (for accountants)
 exports.approveRequest = async (req, res) => {
   const { id } = req.params;
-  const { status, approvalcomment} = req.body;
+  const {status, approvalcomment} = req.body;
   try {
     const request = await Request.findByPk(id);
 

@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App h-screen overflow-y-scroll no-scrollbar">
         {/* <WorkerPage/> */}
         <AccountantDashboard />
     </div>
