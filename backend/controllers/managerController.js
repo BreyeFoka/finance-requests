@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 // Add new employee (for managers)
 exports.addEmployee = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, role } = req.body;
 
   try {
     const existingUser = await User.findOne({ where: { email } });
@@ -14,7 +14,6 @@ exports.addEmployee = async (req, res) => {
     const user = await User.create({
       name,
       email,
-      password,
       role
     });
 
@@ -38,6 +37,16 @@ exports.removeEmployee = async (req, res) => {
     await user.destroy();
 
     res.status(200).send({ message: 'Employee removed successfully.' });
+  } catch (error) {
+    res.status(500).send({ error: 'Server error.' });
+  }
+};
+
+// Get all employees (for managers)
+exports.getEmployees = async (req, res) => {
+  try {
+    const employees = await User.findAll();
+    res.status(200).send(employees);
   } catch (error) {
     res.status(500).send({ error: 'Server error.' });
   }

@@ -6,11 +6,9 @@ const User = require('../models/User');
 exports.submitRequest = async (req, res) => {
   const { amount, reason, date, comments, names, approval} = req.body;
   const file = req.file ? req.file.path : null;
-  const { id } = req.user;
 
   try {
     const request = await Request.create({
-      worker_id: id,
       amount,
       reason,
       date,

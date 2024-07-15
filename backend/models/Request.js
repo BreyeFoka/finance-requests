@@ -8,13 +8,13 @@ const Request = sequelize.define('Request', {
     autoIncrement: true,
     primaryKey: true
   },
-  worker_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: User,
-      key: 'id'
-    }
-  },
+  // worker_id: {
+  //   type: DataTypes.INTEGER,
+  //   references: {
+  //     model: User,
+  //     key: 'id'
+  //   }
+  // },
   names: {
     type: DataTypes.STRING,
     allowNull: false,

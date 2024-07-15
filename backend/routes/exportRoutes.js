@@ -32,6 +32,8 @@ router.get('/export-requests', async (req, res) => {
       { header: 'Names', key: 'names', width: 50},
       { header: 'Amount', key: 'amount', width: 15 },
       { header: 'Reason', key: 'reason', width: 30 },
+      { header: 'Comments', key: 'comments', width: 40 },
+      { header: 'Approval Comments', key: 'approvalcomment', width: 40 },
       { header: 'Date', key: 'date', width: 15 },
       { header: 'Status', key: 'status', width: 15 },
       { header: 'Attached File', key: 'filepath', width: 15 }
@@ -70,6 +72,8 @@ router.get('/export-approved-requests', async (req, res) => {
       { header: 'Amount', key: 'amount', width: 15 },
       { header: 'Reason', key: 'reason', width: 30 },
       { header: 'Date', key: 'date', width: 15 },
+      { header: 'Comments', key: 'comments', width: 40 },
+      { header: 'Approval Comments', key: 'approvalcomment', width: 40 },
       { header: 'Attached File', key: 'filepath', width: 15 }
     ];
 
